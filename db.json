@@ -5,16 +5,16 @@
       "name": "Shoyu Ramen",
       "restaurant": "Nonono",
       "image": "./assets/ramen/shoyu.jpg",
-      "rating": "4",
-      "comment": "You can go right"
+      "rating": "3",
+      "comment": "You can go left"
     },
     {
       "id": 2,
       "name": "Naruto Ramen",
       "restaurant": "Naruto",
       "image": "./assets/ramen/naruto.jpg",
-      "rating": 10,
-      "comment": "My absolute fave!"
+      "rating": "5",
+      "comment": "My  fave!"
     },
     {
       "id": 3,
@@ -39,6 +39,14 @@
       "image": "./assets/ramen/kojiro.jpg",
       "rating": 6,
       "comment": "Perfect for a cold night."
+    },
+    {
+      "name": "quick dish",
+      "restaurant": "ramen lover",
+      "image": "https://www.goodfreephotos.com/albums/food/ramen-noodles-food.jpg",
+      "rating": "3",
+      "comment": "luv",
+      "id": 6
     }
   ]
 }
