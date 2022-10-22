@@ -6,24 +6,24 @@ let restaurantNameTag = document.querySelector(".restaurant");
 let ratingTag = document.querySelector("input[name=rating]");
 let commentTag = document.querySelector("textarea[name=comment]");
 let ratingForm = document.querySelector("#ramen-rating");
-console.log(ratingForm);
 
-//fetch
+//initial fetch
 fetch("http://localhost:3000/ramens")
   .then((r) => r.json())
-  .then((r) =>
+  .then((r) => {
     r.forEach((ramen) => {
       let imageTag = document.createElement("img");
       imageTag.src = ramen.image;
       imageTag.dataset.id = ramen.id;
       imagesContainerTag.append(imageTag);
-    })
-  );
-
-imagesContainerTag.addEventListener("click", (e) => {
-  let id = e.target.dataset.id;
-  insertRestaurant(id);
-});
+    });
+    ratingForm.dataset.id = r[0].id;
+    restaurantImageTag.src = r[0].image;
+    nameTag.innerText = r[0].name;
+    restaurantNameTag.innerText = r[0].restaurant;
+    ratingTag.value = r[0].rating;
+    commentTag.textContent = r[0].comment;
+  });
 
 //functions
 
@@ -40,12 +40,7 @@ const insertRestaurant = (id) => {
     });
 };
 
-const changeRating = (e) => {
-  e.preventDefault();
-  let newRating = e.target.rating.value;
-  let newComment = e.target.comment.value;
-  let id = ratingForm.dataset.id;
-
+const patchRating = (id, newRating, newComment) => {
   fetch(`http://localhost:3000/ramens/${id}`, {
     method: "PATCH",
     headers: {
@@ -62,5 +57,19 @@ const changeRating = (e) => {
     });
 };
 
+const changeRating = (e) => {
+  e.preventDefault();
+  let changedRating = e.target.rating.value;
+  let changedComment = e.target.comment.value;
+  let id = ratingForm.dataset.id;
+  patchRating(id, changedRating, changedComment);
+};
+
 //listeners
+
+imagesContainerTag.addEventListener("click", (e) => {
+  let id = e.target.dataset.id;
+  insertRestaurant(id);
+});
+
 ratingForm.addEventListener("submit", changeRating);
