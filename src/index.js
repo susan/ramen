@@ -21,6 +21,7 @@ const showRestaurant = (restaurantObj) => {
   restaurantNameTag.innerText = restaurantObj.restaurant;
   ratingTag.value = restaurantObj.rating;
   commentTag.textContent = restaurantObj.comment;
+  createForm.reset();
 };
 
 function restaurantList() {
